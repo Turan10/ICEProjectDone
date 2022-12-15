@@ -1,0 +1,128 @@
+
+@startuml
+'https://plantuml.com/class-diagram
+
+
+Class Bookingtest
+Class DBClassRooms
+Class DBEmployees
+Class DBStudents
+Class login
+Class Main
+Abstract Class person
+Class Room
+Class Run
+Class Runstudent
+Class RunSuperUser
+Class RunTeacher
+Class Student
+Class Substitute
+Class SuperUser
+Class SuperUserObject
+Class Teacher
+Abstract Class Teachers
+Class TeacherSchema
+
+
+Run --* Runstudent
+Run --* RunSuperUser
+Run --* RunTeacher
+Runstudent --* Student
+RunSuperUser --* SuperUser
+RunTeacher --* Teacher
+SuperUser --* SuperUserObject
+
+Bookingtest --* DBClassRooms
+
+Bookingtest --* DBEmployees
+
+Main --* Run
+
+person --* Student
+person --* Teacher
+person --* SuperUser
+
+Room --* DBClassRooms
+
+Teachers --* TeacherSchema
+
+Runstudent --* login
+RunSuperUser --* login
+RunTeacher --* login
+
+
+
+Gymnasium --* DBClassRooms
+Gymnasium --* SuperUser
+Gymnasium --* Employee
+Employee <|-- DBEmployees
+Employee <|-- Teachers
+Employee <|-- Teacher
+Teacher --* DBStudents
+DBStudents --* DBClassRooms
+SuperUser --* Employee
+Teachers <|-- Teacher
+Teachers <|-- Substitute
+
+
+Gymnasium : - String name
+Gymnasium : + String getName()
+
+
+SuperUser : - String name
+SuperUser : - String post "Stilling"
+SuperUser : + String getName()
+SuperUser : + String getPost()
+SuperUser : + DBStudents registerStudent()
+SuperUser : + DBStudents deregisterStudent()
+SuperUser : + Employee registerEmployee()
+SuperUser : + Employee deregisterEmployee()
+SuperUser : + DBClassRooms overview()
+
+
+Teachers : - String name
+Teachers : - String post
+Teachers : - String ID
+Teachers : + String getName()
+Teachers : + String getPost()
+Teachers : + String getID()
+Teachers : + String bookingOfSubjectRooms()
+Teachers : + Arraylist <DBClassRooms> availableSubjectRooms()
+Teachers : + DBSchedule()
+Teachers : + String sendMessage()
+Teachers : + DBStudents getStudentInfo()
+
+
+Teacher : - String subjects
+Teacher : + getSubject()
+Teacher : + int giveGrades()
+
+
+DBStudents : - String name
+DBStudents : - int phoneNumber
+DBStudents : - String email
+DBStudents : - String subjects
+DBStudents : - int ID
+DBStudents : - String class
+DBStudents : + DBSchedule getDBSchedule
+DBStudents : + int getGrades()
+DBStudents : + String getName()
+DBStudents : + getID()
+DBStudents : + getSubjects()
+DBStudents : + getClass()
+DBStudents : + String getTeacherComment()
+DBStudents : + String setName()
+DBStudents : + int setPhoneNumber()
+DBStudents : + String setEmail()
+DBStudents : + getHomework()
+
+
+
+
+
+
+
+
+@enduml
+
+@enduml
